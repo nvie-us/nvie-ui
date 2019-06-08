@@ -1,0 +1,52 @@
+.environment-view h2 {
+  margin-bottom: 16px;
+}
+
+.environment-view .description {
+  color: #7e7e7e;
+  font-size: 18px;
+}
+
+.environment-view .stack {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 24px;
+}
+
+.environment-view .tag {
+  display: flex;
+  height: 24px;
+  width: 120px;
+  background: #15CD72;
+  border-radius: 3px;
+  color: #FFFFFF;
+  font-size: 12px;
+  margin-right: 16px;
+}
+
+.environment-view .tag .name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0.8;
+  margin-left: 8px;
+}
+
+.environment-view .tag .version {
+  display: flex;
+  flex: 0.2;
+  background: #212121;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+
+.environment-view-actions {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.environment-view-actions button {
+  margin-right: 24px;
+}
