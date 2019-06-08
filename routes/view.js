@@ -14,6 +14,10 @@ const ViewController = {
     admin: {
         index: (req, res) => {
             return res.sendFile(path.join(__dirname, '../views', 'admin', 'index.html'));
+        },
+
+        newEnvironment: (req, res) => {
+            return res.sendFile(path.join(__dirname, '../views', 'admin', 'new-environment.html'));
         }
     }
 }

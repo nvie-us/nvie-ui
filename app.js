@@ -25,6 +25,7 @@ app.get('/login', viewController.login);
 app.get('/signup', viewController.signup);
 
 app.get('/admin', viewController.admin.index);
+app.get('/admin/environments/new', viewController.admin.newEnvironment);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

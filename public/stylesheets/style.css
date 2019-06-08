@@ -6,6 +6,14 @@ html,body {
   font-family: 'Open Sans', sans-serif;
 }
 
+label {
+  margin-bottom: 8px;
+}
+
+section {
+  margin-bottom: 16px;
+}
+
 h1, h2, h3, p, ul, li {
   padding: 0;
   margin: 0;
@@ -32,6 +40,7 @@ h1, h2, h3, p, ul, li {
   color: #FFFFFF;
   font-weight: bold;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .container {
@@ -40,12 +49,24 @@ h1, h2, h3, p, ul, li {
   height: 100%;
   width: 100%;
   background: #0069ff;
+  overflow: hidden;
 }
 
 .center {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.content {
+  flex: 0.8;
+  overflow-y: auto;
+}
+
+.sidebar {
+  flex: 0.2;
+  background: #212121;
+  height: 100%;
 }
 
 .login-form {
