@@ -104,6 +104,7 @@ footer {
 }
 
 .environment {
+    position: relative;
     display: flex;
     height: auto;
     width: 300px;
@@ -116,7 +117,15 @@ footer {
     cursor: pointer;
 }
 
-.environment:hover .environment-actions {
+.environment:hover .environment-image img {
+    opacity: 0.5;
+}
+
+.environment:hover .environment-actions, .environment:hover .quick-actions {
+    display: flex;
+}
+
+.environment:hover .quick-actions {
     display: flex;
 }
 
@@ -134,7 +143,7 @@ footer {
     justify-content: space-between;
 }
 
-.environment-actions {
+.environment-actions, .quick-actions {
     display: none;
 }
 
@@ -188,4 +197,18 @@ footer {
     appearance: none;
     border: solid 1px #dfdfdf;
     text-align: center;
+}
+
+.quick-actions {
+    position: absolute;
+    height: 150px;
+    display: none;
+    top: 0;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.quick-actions button {
+    margin-right: 8px;
 }
