@@ -48,17 +48,22 @@
 
                     <div class="sub-section">
                         <label>Environment Name</label>
-                        <input class="input-field" placeholder="Environment name" />
+                        <input class="input-field" id="environment_name" placeholder="Environment name" />
                     </div>
 
                     <div class="sub-section">
                         <label>Environment Description</label>
-                        <input class="input-field" placeholder="Environment description" />
+                        <input class="input-field" id="environment_description" placeholder="Environment description" />
+                    </div>
+
+                    <div class="sub-section">
+                        <label>What port do you want us to run it on?</label>
+                        <input class="input-field" type="number" id="docker_port" placeholder="Port" />
                     </div>
 
                     <div class="sub-section">
                         <label>Enter your GitHub/BitBucket/Gitlab URL</label>
-                        <input class="input-field" placeholder="Repository URL" />
+                        <input class="input-field" id="repository_url" placeholder="Repository URL" />
                     </div>
                 </section>
 
@@ -87,7 +92,7 @@
                     </div>
                 </section>
                 <section>
-                    <button class="btn-primary">Let's Go!</button>
+                    <button class="btn-primary submit">Let's Go!</button>
                 </section>
 			</div>
 		</div>

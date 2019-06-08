@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var viewController = require('./routes/view');
+var bluePrintController = require('./routes/blueprints');
 
 var app = express();
 
@@ -30,6 +31,10 @@ app.get('/admin/environments/new', viewController.admin.newEnvironment);
 
 app.get('/member', viewController.member.index);
 app.get('/member/environments/:environmentId/view', viewController.member.viewEnvironment);
+
+app.get('/team', viewController.team);
+
+app.post('/blueprints', bluePrintController.insert);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

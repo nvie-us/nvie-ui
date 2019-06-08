@@ -29,6 +29,10 @@ const ViewController = {
         viewEnvironment: (req, res) => {
             return res.sendFile(path.join(__dirname, '../views', 'member', 'view-environment.html'));
         }
+    },
+
+    team: (req, res) => {
+        return res.sendFile(path.join(__dirname, '../views', 'team.html'));
     }
 }
 

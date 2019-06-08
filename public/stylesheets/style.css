@@ -43,6 +43,10 @@ h1, h2, h3, p, ul, li {
   cursor: pointer;
 }
 
+.btn-primary.disabled {
+  opacity: 0.3;
+}
+
 .btn-secondary {
   height: 50px;
   width: 120px;

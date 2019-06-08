@@ -1,3 +1,10 @@
+let SELECTED_OPERATING_SYSTEM = null,
+    SELECTED_OPERATING_SYSTEM_VERSION = null,
+    SELECTED_BINARIES = [],
+    DOCKER_PORT = null,
+    ENVIRONMENT_NAME = null,
+    REPOSITORY_URL = null;
+
 function fetchEnvironments () {
     const environments = [
         {
@@ -138,52 +145,62 @@ function fetchOperatingSystems () {
     const operatingSystems = [
         {
             logo: 'https://assets.ubuntu.com/v1/57a889f6-ubuntu-logo112.png',
-            versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1']
+            versions: ['18.04', '17.3.2', '16.3.2', '15.2.2', '19.1.1'],
+            label: 'ubuntu'
         },
         {
             logo: 'https://assets.ubuntu.com/v1/57a889f6-ubuntu-logo112.png',
-            versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1']
+            versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1'],
+            label: 'ubuntu'
         },
         {
             logo: 'https://assets.ubuntu.com/v1/57a889f6-ubuntu-logo112.png',
-            versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1']
+            versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1'],
+            label: 'ubuntu'
         },
         {
             logo: 'https://assets.ubuntu.com/v1/57a889f6-ubuntu-logo112.png',
-            versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1']
+            versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1'],
+            label: 'ubuntu'
         },
         {
             logo: 'https://assets.ubuntu.com/v1/57a889f6-ubuntu-logo112.png',
-            versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1']
+            versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1'],
+            label: 'ubuntu'
         }
     ],
         dependencies = [
             {
                 logo: 'https://ih1.redbubble.net/image.109336634.1604/flat,550x550,075,f.u1.jpg',
-                versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1']
+                versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1'],
+                label: 'nodejs'
             },
             {
                 logo: 'https://ih1.redbubble.net/image.109336634.1604/flat,550x550,075,f.u1.jpg',
-                versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1']
+                versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1'],
+                label: 'python'
             },
             {
                 logo: 'https://ih1.redbubble.net/image.109336634.1604/flat,550x550,075,f.u1.jpg',
-                versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1']
+                versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1'],
+                label: 'nodejs'
             },
             {
                 logo: 'https://ih1.redbubble.net/image.109336634.1604/flat,550x550,075,f.u1.jpg',
-                versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1']
+                versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1'],
+                label: 'python'
             },
             {
                 logo: 'https://ih1.redbubble.net/image.109336634.1604/flat,550x550,075,f.u1.jpg',
-                versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1']
+                versions: ['18.0.1', '17.3.2', '16.3.2', '15.2.2', '19.1.1'],
+                label: 'nodejs'
             }
         ]
 
     operatingSystems.map((operatingSystem, index) => {
         $(".operating-systems").append(
         `
-            <div class="operating-system entity">
+            <div data-os="${operatingSystem.label}" class="operating-system entity">
                 <img src="${operatingSystem.logo}" />
                 <div class="versions">
                     <select>
@@ -200,7 +217,7 @@ function fetchOperatingSystems () {
     dependencies.map((dependency, index) => {
         $(".dependencies").append(
         `
-            <div class="dependency entity">
+            <div data-dependency="${dependency.label}" class="dependency entity">
                 <img src="${dependency.logo}" />
                 <div class="versions">
                     <select>
@@ -227,4 +244,39 @@ $(document).on('click', '.entity', function () {
     }
 
     $(this).toggleClass('selected');
+});
+
+$(document).on('click', '.submit', function () {
+    SELECTED_OPERATING_SYSTEM = $('.operating-system.selected').data('os');
+    SELECTED_OPERATING_SYSTEM_VERSION = $('.operating-system.selected').find('select').val();
+    ENVIRONMENT_NAME = $('#environment_name').val(),
+    DOCKER_PORT = $('#docker_port').val(),
+    REPOSITORY_URL = $('#repository_url').val();
+    
+    $('.dependency.selected').each(function () {
+        SELECTED_BINARIES.push($(this).data('dependency'));
+    });
+
+    $.ajax({
+        url: '/blueprints',
+        method: 'POST',
+        beforeSend: () => {
+            $(".submit").prop('disabled', true);
+            $(".submit").toggleClass('disabled');
+        },
+        complete: () => {
+            $(".submit").prop('disabled', false);
+            $(".submit").toggleClass('disabled');
+        },
+        data: {
+            name: ENVIRONMENT_NAME,
+            dockerPort: DOCKER_PORT,
+            repository: REPOSITORY_URL,
+            os: SELECTED_OPERATING_SYSTEM + ':' + SELECTED_OPERATING_SYSTEM_VERSION,
+            binaries: JSON.stringify(SELECTED_BINARIES)
+        },
+        success: (data) => {
+            console.log(data);
+        }
+    });
 });

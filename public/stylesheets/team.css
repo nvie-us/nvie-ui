@@ -1,0 +1,26 @@
+.team-view .team {
+  display: flex;
+  flex-direction: row;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.team-view .team .team-member {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 32px;
+  margin-bottom: 32px;
+  background: #FFF3E0;
+  padding: 20px;
+  width: 340px;
+}
+
+.team-member-avatar {
+  margin-right: 16px;
+}
+
+.team-member-email {
+  font-size: 12px;
+  color: #7e7e7e;
+}
