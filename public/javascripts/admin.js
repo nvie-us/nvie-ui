@@ -6,139 +6,36 @@ let SELECTED_OPERATING_SYSTEM = null,
     REPOSITORY_URL = null;
 
 function fetchEnvironments () {
-    const environments = [
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Manish Shetty'
-        },
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Akshaye Shenoi'
-        },
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Akshaye Shenoi'
-        },
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Akshaye Shenoi'
-        },
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Akshaye Shenoi'
-        },
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Akshaye Shenoi'
-        },
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Manish Shetty'
-        },
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Akshaye Shenoi'
-        },
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Akshaye Shenoi'
-        },
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Akshaye Shenoi'
-        },
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Akshaye Shenoi'
-        },
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Akshaye Shenoi'
-        },
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Manish Shetty'
-        },
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Akshaye Shenoi'
-        },
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Akshaye Shenoi'
-        },
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Akshaye Shenoi'
-        },
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Akshaye Shenoi'
-        },
-        {
-            name: 'Development Ubuntu Node Python',
-            logo: 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png',
-            usedBy: 150,
-            createdBy: 'Akshaye Shenoi'
-        },
-    ];
+    $.ajax({
+        url: '/blueprints',
+        method: 'GET',
+        success: (data) => {
+            let blueprints = data;
+
+            $(".content-area").append('<div class="environments">');
     
-    $(".content-area").append('<div class="environments">');
+            blueprints.map((blueprint, index) => {
+                $(".environments").append(`
+                    <div class="environment">
+                        <div class="environment-image">
+                            <img height="150" src="${blueprint.logo || 'https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png'}" />
+                        </div>
+                        <div class="environment-name">${blueprint.envName}</div>
+                        <div class="environment-meta">
+                            <div class="environment-created-by">${blueprint.team}</div>
+                            <div class="environment-actions">
+                                <i data-blueprint='${JSON.stringify(blueprint)}' tooltip="Edit" class="fas fa-edit"></i>
+                                <i tooltip="Copy Blueprint" class="fas fa-copy"></i>
+                                <i tooltip="Delete Blueprint" class="fas fa-trash"></i>
+                            </div>
+                        </div>
+                    </div>`
+                );
+            });
     
-    environments.map((environment) => {
-        $(".environments").append(`
-            <div class="environment">
-                <div class="environment-image">
-                    <img height="150" src="${environment.logo}" />
-                </div>
-                <div class="environment-name">${environment.name}</div>
-                <div class="environment-meta">
-                    <div class="environment-created-by">${environment.createdBy}</div>
-                    <div class="environment-actions">
-                        <i class="fas fa-edit"></i>
-                        <i class="fas fa-copy"></i>
-                        <i class="fas fa-trash"></i>
-                    </div>
-                </div>
-            </div>`
-        );
+            $(".content").append('</div>');
+        }
     });
-    
-    $(".content").append('</div>');
 }
 
 function fetchOperatingSystems () {
@@ -232,6 +129,30 @@ function fetchOperatingSystems () {
     });
 }
 
+function extractBlueprintInfo () {
+    const urlParams = new URLSearchParams(window.location.search),
+        blueprint = JSON.parse(urlParams.get('blueprint'));
+
+    $(".environment-name").html(blueprint.envName);
+
+    $(".stack").append(
+    `
+        <div class="tag">
+            <span class="name">${blueprint.dockerBlueprint.os.split(':')[0]}</span>
+            <span class="version">${blueprint.dockerBlueprint.os.split(':')[1]}</span>
+        </div>
+    `);
+
+    blueprint.dockerBlueprint.binaries.map((binary) => {
+        $(".stack").append(
+        `
+            <div class="tag">
+                <span class="name">${binary}</span>
+                <span class="version">Latest</span>
+            </div>
+        `);
+    });
+}
 
 
 $(document).on('click', '.create-new', () => {
@@ -276,7 +197,16 @@ $(document).on('click', '.submit', function () {
             binaries: JSON.stringify(SELECTED_BINARIES)
         },
         success: (data) => {
-            console.log(data);
+            toastr.success('Successfully created the blueprint!');
+
+            $(".input-field").val('');
         }
     });
+});
+
+$(document).on('click', '.fa-edit', function () {
+    const blueprint = JSON.stringify($(this).data('blueprint'));
+
+
+    window.location.href = `/admin/environments/view?blueprint=${blueprint}`;
 });

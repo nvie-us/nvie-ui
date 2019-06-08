@@ -100,7 +100,6 @@ footer {
 .environments {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
 }
 
 .environment {
@@ -115,6 +114,8 @@ footer {
     box-shadow: 4px 4px 4px #dfdfdf;
     font-size: 14px;
     cursor: pointer;
+    margin-right: 32px;
+    margin-bottom: 32px;
 }
 
 .environment:hover .environment-image img {

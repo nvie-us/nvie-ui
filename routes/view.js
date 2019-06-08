@@ -18,6 +18,10 @@ const ViewController = {
 
         newEnvironment: (req, res) => {
             return res.sendFile(path.join(__dirname, '../views', 'admin', 'new-environment.html'));
+        },
+
+        viewEnvironment: (req, res) => {
+            return res.sendFile(path.join(__dirname, '../views', 'admin', 'view-environment.html'));
         }
     },
 
