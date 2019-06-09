@@ -233,6 +233,10 @@ $(document).on('click', '.provision', function () {
                 <td>Container id</td><td>${response.details.container_id}</td>
                 </tr>
                 </table>
+                <div class="snippet">
+                    nv configure --domain ${response.details.domainName}
+                    <br />nv connect
+                </div>
                 `
             );
 

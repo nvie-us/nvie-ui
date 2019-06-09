@@ -115,7 +115,8 @@ $(document).on('click', '.provision', function () {
         </tr>
         </table>
         <div class="snippet">
-          ssh ubuntu@${response.details.domainName}
+          nv configure --domain ${response.details.domainName}
+          <br />nv connect
         </div>
         `
       );
