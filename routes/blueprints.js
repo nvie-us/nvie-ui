@@ -38,7 +38,8 @@ module.exports = {
     console.log(req.body);
     axios.post(`${ORCHESTRATOR_URL}/team/${req.session.team}/environment`, {
       envName: req.body.envName,
-      user: req.body.user
+      user: req.body.user,
+      ghRepo: req.body.ghRepo
     })
     .then((response) => {
       return res.json({ success: true, details: response.data.environment });

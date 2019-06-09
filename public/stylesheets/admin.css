@@ -89,6 +89,15 @@ footer {
     padding: 0 10px 0 10px;
 }
 
+.nav-actions button {
+    margin-right: 16px;
+}
+
+.nav-actions i {
+    font-size: 2em;
+    color: #15CD72;
+}
+
 .nav-actions .input-field {
     flex: 1;
     height: 70px;
@@ -100,6 +109,7 @@ footer {
 .environments {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .environment {
@@ -144,7 +154,7 @@ footer {
     justify-content: space-between;
 }
 
-.environment-actions, .quick-actions {
+.quick-actions {
     display: none;
 }
 
@@ -166,7 +176,7 @@ footer {
 .entity {
     display: flex;
     flex-direction: column;
-    width: 160px;
+    width: 180px;
     height: 190px;
     border: solid 1px #dfdfdf;
     margin-right: 16px;

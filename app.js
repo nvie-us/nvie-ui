@@ -35,11 +35,12 @@ app.get('/login', viewController.login);
 app.get('/signup', viewController.signup);
 
 app.get('/admin', viewController.admin.index);
+app.get('/admin/available', viewController.admin.getAvailableStuff);
 app.get('/admin/environments/new', viewController.admin.newEnvironment);
 app.get('/admin/environments/view', viewController.admin.viewEnvironment);
 
 app.get('/member', viewController.member.index);
-app.get('/member/environments/:environmentId/view', viewController.member.viewEnvironment);
+app.get('/member/environments/view', viewController.member.viewEnvironment);
 
 app.get('/team', viewController.team);
 

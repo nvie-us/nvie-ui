@@ -13,9 +13,8 @@
   <link rel="stylesheet" href="/stylesheets/admin.css">
   <link rel="stylesheet" href="/stylesheets/member.css">
 </head>
-<body>
+<body onload="extractBlueprintInfo()">
   <div id="myModal" class="modal">
-
     <!-- Modal content -->
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -46,25 +45,10 @@
 		
 		<div class="content">
 			<div class="content-area">
-        <h2>Ubuntu - NodeJS - Python</h2>
+        <h2 class="environment-name">Ubuntu - NodeJS - Python</h2>
 
         <div class="stack">
-          <div class="tag">
-            <span class="name">Ubuntu</span>
-            <span class="version">17.04</span>
-          </div>
-          <div class="tag">
-              <span class="name">NodeJS</span>
-              <span class="version">8.10.0</span>
-          </div>
-          <div class="tag">
-              <span class="name">Python</span>
-              <span class="version">2.7</span>
-          </div>
-          <div class="tag">
-              <span class="name">Redis</span>
-              <span class="version">0.3</span>
-          </div>
+          
         </div>
 
         <div class="description">
@@ -72,7 +56,6 @@
         </div>
 
         <div class="environment-view-actions">
-          <button class="btn-secondary">Go Back</button>
           <button class="btn-primary provision">Provision</button>
         </div>
 			</div>
