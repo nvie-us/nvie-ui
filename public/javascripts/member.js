@@ -74,7 +74,7 @@ $(document).on('click', '.provision', function () {
     method: 'POST',
     data: {
       envName: $(this).data('name'),
-      user: 'shenny',
+      user: 'akshaye',
       ghRepo: $(this).data('url')
     },
     beforeSend: () => {
@@ -100,7 +100,7 @@ $(document).on('click', '.provision', function () {
         <td>Id</td><td> ${response.details.id}</td>
         </tr>
         <tr>
-        <td>Domain name</td><td>${response.details.domainName}</td>
+        <td>Domain name</td><td><a target="_blank" href="http://${response.details.domainName}">${response.details.domainName}</a></td>
         </tr>
         <tr>
         <td>Host name</td><td>${response.details.hostname}</td>
