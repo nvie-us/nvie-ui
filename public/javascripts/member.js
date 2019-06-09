@@ -116,3 +116,11 @@ $(document).on('click', '.provision', function () {
     }
   });
 });
+
+$(document).on('keyup', '.search', function (ev) {
+  const searchTerm = ev.target.value;
+
+  $('.environment').filter(function () {
+      $(this).toggle($(this).find('.environment-name').text().indexOf(searchTerm) > -1);
+  })
+});

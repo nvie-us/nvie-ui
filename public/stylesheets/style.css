@@ -11,6 +11,10 @@ a {
   text-decoration: none;
 }
 
+i {
+  cursor: pointer;
+}
+
 label {
   margin-bottom: 8px;
 }
@@ -22,6 +26,19 @@ section {
 h1, h2, h3, p, ul, li {
   padding: 0;
   margin: 0;
+}
+
+.notification-area {
+  display: none;
+  position: absolute;
+  height: 60px;
+  width: 200px;
+  right: 20px;
+  top: 70px;
+  background: #dedede;
+  box-sizing: border-box;
+  padding: 15px;
+  z-index: 999;
 }
 
 .input-field {

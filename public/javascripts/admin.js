@@ -106,6 +106,9 @@ function extractBlueprintInfo () {
             </div>
         `);
     });
+
+    $(".environment-view-actions .provision").data('name', blueprint.envName);
+    $(".environment-view-actions .provision").data('url', blueprint.ghRepo);
 }
 
 
@@ -154,7 +157,17 @@ $(document).on('click', '.submit', function () {
         success: (data) => {
             toastr.success('Successfully created the blueprint!');
 
-            $(".input-field").val('');
+            setTimeout(() => {
+                let blueprint = {
+                    envName: ENVIRONMENT_NAME,
+                    dockerBlueprint: {
+                        os: SELECTED_OPERATING_SYSTEM + ':' + SELECTED_OPERATING_SYSTEM_VERSION,
+                        binaries: SELECTED_BINARIES
+                    }
+                };
+
+                window.location.href = `/admin/environments/view?blueprint=${JSON.stringify(blueprint)}`;
+            }, 300);
         }
     });
 });
@@ -171,4 +184,67 @@ $(document).on('click', '.environment', function () {
 
 
     window.location.href = `/admin/environments/view?blueprint=${blueprint}`;
+});
+
+$(document).on('click', '.provision', function () {
+    $.ajax({
+        url: '/blueprints/provision',
+        method: 'POST',
+        data: {
+        envName: $(this).data('name'),
+        user: 'shenny',
+        ghRepo: $(this).data('url')
+        },
+        beforeSend: () => {
+        $("#myModal").find('div').html('<div class="lds-dual-ring"></div>');
+
+        $("#myModal").css('display', 'block');
+
+        },
+        success: (response) => {
+            if (!response.success) {
+                toastr.error('Error provisioning. Our engineers are on this.');
+                
+                return;
+            }
+            
+            toastr.success('Environment successfully provisioned!');
+
+            $("#myModal").find('div').html(
+                `
+                <table cellpadding="10">
+                <tr>
+                <td>Id</td><td> ${response.details.id}</td>
+                </tr>
+                <tr>
+                <td>Domain name</td><td>${response.details.domainName}</td>
+                </tr>
+                <tr>
+                <td>Host name</td><td>${response.details.hostname}</td>
+                </tr>
+                <tr>
+                <td>Container name</td><td>${response.details.container_name}</td>
+                </tr>
+                <tr>
+                <td>Container id</td><td>${response.details.container_id}</td>
+                </tr>
+                </table>
+                `
+            );
+
+            $("#myModal").css('display', 'block');
+        }
+    });
+});
+
+$(document).on('keyup', '.search', function (ev) {
+    const searchTerm = ev.target.value;
+
+    $('.environment-listing .environment').filter(function () {
+        $(this).toggle($(this).find('.environment-name').text().indexOf(searchTerm) > -1);
+    })
+});
+
+$(document).on('click', '.fa-bell', () => {
+    $(".notification-area").toggle();
 });
