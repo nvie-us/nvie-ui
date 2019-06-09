@@ -180,6 +180,7 @@ footer {
     height: 190px;
     border: solid 1px #dfdfdf;
     margin-right: 16px;
+    margin-bottom: 16px;
 }
 
 .entity.selected {

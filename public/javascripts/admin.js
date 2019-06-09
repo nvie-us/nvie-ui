@@ -10,6 +10,8 @@ function fetchEnvironments () {
         url: '/blueprints',
         method: 'GET',
         success: (data) => {
+            $(".lds-dual-ring").hide();
+
             let blueprints = data;
 
             $(".content-area").append('<div class="environments">');
