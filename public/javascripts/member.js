@@ -115,7 +115,7 @@ $(document).on('click', '.provision', function () {
         </tr>
         </table>
         <div class="snippet">
-          nv configure --domain ${response.details.domainName}
+          nv config --domain ${response.details.domainName}
           <br />nv connect
         </div>
         `
