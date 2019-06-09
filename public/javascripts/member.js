@@ -78,7 +78,7 @@ $(document).on('click', '.provision', function () {
       ghRepo: $(this).data('url')
     },
     beforeSend: () => {
-      $("#myModal").find('div').html('<div class="lds-dual-ring"></div>');
+      $("#myModal .modal-content").find('.modal-body').html('<div class="lds-dual-ring"></div>');
 
       $("#myModal").css('display', 'block');
 
@@ -93,7 +93,9 @@ $(document).on('click', '.provision', function () {
       
       toastr.success('Environment successfully provisioned!');
 
-      $("#myModal").find('div').html(
+      $(".modal-header h2").html('Environment provisioned!');
+
+      $("#myModal .modal-content").find('.modal-body').html(
         `
         <table cellpadding="10">
         <tr>
@@ -131,4 +133,8 @@ $(document).on('keyup', '.search', function (ev) {
   $('.environment').filter(function () {
       $(this).toggle($(this).find('.environment-name').text().indexOf(searchTerm) > -1);
   })
+});
+
+$(document).on('click', '.fa-times', function () {
+  $("#myModal").css('display', 'none');
 });
