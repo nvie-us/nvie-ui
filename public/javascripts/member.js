@@ -90,6 +90,7 @@ $(document).on('click', '.provision', function () {
         return;
       }
       
+      
       toastr.success('Environment successfully provisioned!');
 
       $("#myModal").find('div').html(
@@ -111,10 +112,15 @@ $(document).on('click', '.provision', function () {
         <td>Container id</td><td>${response.details.container_id}</td>
         </tr>
         </table>
+        <div class="snippet">
+          ssh ubuntu@${response.details.domainName}
+        </div>
         `
       );
 
       $("#myModal").css('display', 'block');
+
+      navigator.clipboard.writeText(`ssh ubuntu@${response.details.domainName}`);
     }
   });
 });
